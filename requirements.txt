@@ -5,3 +5,5 @@ python-dotenv
 azure-cognitiveservices-speech
 Flask
 azure-storage-blob
+fastapi
+uvicorn
