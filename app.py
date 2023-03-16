@@ -24,6 +24,10 @@ speech_config = SpeechConfig(subscription=os.getenv("AZURE_SPEECH_SUBSCRIPTION_K
 blob_service_client = BlobServiceClient.from_connection_string(os.getenv("AZURE_BLOB_CONNECTION_STRING"))
 container_client = blob_service_client.get_container_client("your-container-name")
 
+@app.route("/", methods=["GET"])
+def index():
+    return "Hello, World!"
+
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
