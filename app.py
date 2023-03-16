@@ -9,6 +9,8 @@ from azure.cognitiveservices.speech import SpeechConfig, SpeechSynthesizer, Audi
 from azure.storage.blob import BlobServiceClient, BlobSasPermissions, generate_blob_sas
 from io import BytesIO
 from datetime import datetime, timedelta
+import traceback
+
 
 load_dotenv()
 
@@ -27,6 +29,14 @@ container_client = blob_service_client.get_container_client("your-container-name
 @app.route("/", methods=["GET"])
 def index():
     return "Hello, World!"
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    tb_str = traceback.format_exception(etype=type(e), value=e, tb=e.__traceback__)
+    error_message = "".join(tb_str)
+
+    print("Error:", error_message)
+    return str(error_message), 500
 
 @app.route("/callback", methods=["POST"])
 def callback():
