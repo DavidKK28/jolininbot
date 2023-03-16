@@ -1,0 +1,7 @@
+line-bot-sdk
+openai
+requests
+python-dotenv
+azure-cognitiveservices-speech
+Flask
+azure-storage-blob
